@@ -1,0 +1,6 @@
+name: VoteSystem
+version: '1.0'
+main: net.norius.voteSystem.VoteSystem
+api-version: '1.21'
+authors: [ Norius ]
+description: Simple Vote System with shop

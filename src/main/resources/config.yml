@@ -1,0 +1,10 @@
+database:
+  user: "root"
+  host: "localhost"
+  password: ""
+  database: ""
+  port: "3306"
+
+settings:
+
+lang:
