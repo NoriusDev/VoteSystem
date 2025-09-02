@@ -48,7 +48,8 @@ public class Database {
                         "last_vote_2 LONG DEFAULT 0, " +
                         "active_vote_days INT DEFAULT 0, " +
                         "interest_points INT DEFAULT 0, " +
-                        "last_interest LONG DEFAULT 0)")) {
+                        "last_interest LONG DEFAULT 0, " +
+                        "last_pause LONG DEFAULT 0)")) {
                 statement.execute();
             } catch (SQLException e) {
                 plugin.getLogger().log(Level.SEVERE, "Could not create table votesystem_votes", e);

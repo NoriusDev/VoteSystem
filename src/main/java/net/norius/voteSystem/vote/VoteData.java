@@ -12,8 +12,9 @@ public class VoteData {
     private int activeVoteDays;
     private int interestPoints;
     private Date lastInterest;
+    private Date lastPause;
 
-    public VoteData(int streak, int points, int bank, Date lastVote1, Date lastVote2, int activeVoteDays, int interestPoints, Date lastInterest) {
+    public VoteData(int streak, int points, int bank, Date lastVote1, Date lastVote2, int activeVoteDays, int interestPoints, Date lastInterest, Date lastPause) {
         this.streak = streak;
         this.points = points;
         this.bank = bank;
@@ -22,6 +23,15 @@ public class VoteData {
         this.activeVoteDays = activeVoteDays;
         this.interestPoints = interestPoints;
         this.lastInterest = lastInterest;
+        this.lastPause = lastPause;
+    }
+
+    public Date getLastPause() {
+        return lastPause;
+    }
+
+    public void setLastPause(Date lastPause) {
+        this.lastPause = lastPause;
     }
 
     public int getStreak() {
