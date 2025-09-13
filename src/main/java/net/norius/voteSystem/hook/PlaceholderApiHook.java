@@ -3,7 +3,6 @@ package net.norius.voteSystem.hook;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.norius.voteSystem.VoteSystem;
 import net.norius.voteSystem.vote.VoteData;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,8 +40,8 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
         Optional<VoteData> data = plugin.getVoteManager().getData(uuid);
 
         if (data.isEmpty()) {
-            plugin.getVoteManager().loadData(uuid);
-            removeFromCache(uuid);
+            plugin.getVoteManager().loadData(uuid, false);
+            plugin.getVoteManager().cleanCacheDelayed(uuid);
             return "";
         }
 
@@ -53,16 +52,6 @@ public class PlaceholderApiHook extends PlaceholderExpansion {
             case "playerpoints" -> String.valueOf(voteData.getPoints());
             default -> "";
         };
-    }
-
-    private void removeFromCache(UUID uuid) {
-        long delay = 20L * 60 * 5;
-
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
-            if (Bukkit.getPlayer(uuid) == null && plugin.getVoteManager().getData(uuid).isPresent()) {
-                plugin.getVoteManager().cleanCache(uuid);
-            }
-        }, delay);
     }
 
 }

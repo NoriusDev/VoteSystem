@@ -25,9 +25,9 @@ public class Database {
 
         config.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s",
                 plugin.getConfig().getString("database.host"),
-                plugin.getConfig().getInt("database.port"),
+                plugin.getConfig().getString("database.port"),
                 plugin.getConfig().getString("database.database")));
-        config.setUsername(plugin.getConfig().getString("database.username"));
+        config.setUsername(plugin.getConfig().getString("database.user"));
         config.setPassword(plugin.getConfig().getString("database.password"));
 
         this.dataSource = new HikariDataSource(config);
@@ -42,12 +42,10 @@ public class Database {
                 PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS votesystem_votes(" +
                         "uuid VARCHAR(36) NOT NULL PRIMARY KEY, " +
                         "streak INT DEFAULT 0, " +
-                        "points INT DEFAULT 0, " +
-                        "bank INT DEFAULT 0, " +
+                        "points DOUBLE DEFAULT 0, " +
+                        "bank DOUBLE DEFAULT 0, " +
                         "last_vote_1 LONG DEFAULT 0, " +
                         "last_vote_2 LONG DEFAULT 0, " +
-                        "active_vote_days INT DEFAULT 0, " +
-                        "interest_points INT DEFAULT 0, " +
                         "last_interest LONG DEFAULT 0, " +
                         "last_pause LONG DEFAULT 0)")) {
                 statement.execute();

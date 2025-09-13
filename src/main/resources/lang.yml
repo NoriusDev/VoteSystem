@@ -1,0 +1,36 @@
+general:
+  no-player: "<red>Du musst ein Spieler sein, um diesen Befehl zu benutzen!"
+  not-found: "<red>Dieser Spieler wurde nicht gefunden!"
+  usage: "<red>Bitte benutze: /vote <streak|shop|auszahlen> <Spieler>"
+  admin-usage: "<red>Bitte benutze: /vote admin <setstreak|setpoints> <Spieler>"
+  no-perms: "<red>Dafür hast du nicht genügend Rechte!"
+
+vote:
+  link-1: "<gray>Klicke <hover:show_text:'<yellow>Öffnet die Vote-Seite 1'><click:open_url:'%link-1%'><green>hier</green></click><gray>, um auf <aqua>Minecraft-Server.eu <gray>zu voten."
+  link-2: "<gray>Klicke <hover:show_text:'<yellow>Öffnet die Vote-Seite 2'><click:open_url:'%link-2%'><green>hier</green></click><gray>, um auf <aqua>Minecraft-Server.net <gray>zu voten."
+  own-streak: "<gray>Dein aktueller Votestreak beträgt <aqua>%streak% <gray>Tage."
+  other-streak: "<gray>Der Votestreak von <aqua>%player% <gray>beträgt <aqua>%streak% <grayTage.>"
+  no-data: "<red>Es sind keine Daten über dich vorhanden! Bitte verbinde dich neu."
+  pause-cooldown: "<red>Du kannst deinen Votestreak erst wieder am %date% pausieren."
+  paused: "<gray>Du hast deinen Votestreak <green>erfolgreich <gray>für <aqua>einen Tag <gray>pausiert."
+  wrong-double: "<red>Bitte gib eine Zahl über 0 und mit maximal einer Nachkommastelle an!"
+  wrong-int: "<red>Bitte gib eine ganze Zahl über 0 an!"
+  not-enough-bank: "<red>Du hast nicht genügend Votepunkte auf deiner Bank!"
+  not-enough-points: "<red> Du hast nicht genügend Votepunkte! Zahle welche mit /vote auszahlen aus der Bank aus."
+  locked-bank: "<red>Du kannst erst nach einem %streak%er Votestreak auf die Votebank zugreifen!"
+  locked-shop: "<red>Du kannst erst nach einem %streak%er Votestreak aif dem Voteshop zugreifen!"
+  bank-withdrew: "<gray>Du hast <aqua>%points% <gray>aus der Votebank ausgezahlt."
+
+admin:
+  set-streak: "<gray>Du hast den Votestreak von <aqua>%player% <gray>auf <aqua>%streak% <gray>gesetzt."
+  set-points: "<gray>Du hast die Votepunkte von <aqua>%player% <gray>auf <aqua>%streak% <gray>gesetzt."
+
+shop:
+  title: "<aqua><b>Voteshop"
+  cash: "<gold>Votepunkte: <green>%points% <gray>Punkte"
+  bank: "<gold>Votebank: <green>%bank% <gray>Punkte"
+  inv-full: "<red>In deinem Inventar ist nicht genügend Platz für dieses Item!"
+  received: "<gray>Du hast das Item %item% <gray>aus dem <aqua><b>Voteshop</b> <gray>für <gold>%price% Votepunkte <gray>gekauft."
+  item-lore:
+    - " <dark_gray>» <gray>Preis: <aqua>%price% Punkte"
+    - "  <gray>*Klicke zum Kaufen*"

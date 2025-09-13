@@ -5,23 +5,19 @@ import java.util.Date;
 public class VoteData {
 
     private int streak;
-    private int points;
-    private int bank;
+    private double points;
+    private double bank;
     private Date lastVote1;
     private Date lastVote2;
-    private int activeVoteDays;
-    private int interestPoints;
     private Date lastInterest;
     private Date lastPause;
 
-    public VoteData(int streak, int points, int bank, Date lastVote1, Date lastVote2, int activeVoteDays, int interestPoints, Date lastInterest, Date lastPause) {
+    public VoteData(int streak, double points, double bank, Date lastVote1, Date lastVote2, Date lastInterest, Date lastPause) {
         this.streak = streak;
         this.points = points;
         this.bank = bank;
         this.lastVote1 = lastVote1;
         this.lastVote2 = lastVote2;
-        this.activeVoteDays = activeVoteDays;
-        this.interestPoints = interestPoints;
         this.lastInterest = lastInterest;
         this.lastPause = lastPause;
     }
@@ -42,19 +38,19 @@ public class VoteData {
         this.streak = streak;
     }
 
-    public int getPoints() {
+    public double getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(double points) {
         this.points = points;
     }
 
-    public int getBank() {
+    public double getBank() {
         return bank;
     }
 
-    public void setBank(int bank) {
+    public void setBank(double bank) {
         this.bank = bank;
     }
 
@@ -72,22 +68,6 @@ public class VoteData {
 
     public void setLastVote2(Date lastVote2) {
         this.lastVote2 = lastVote2;
-    }
-
-    public int getActiveVoteDays() {
-        return activeVoteDays;
-    }
-
-    public void setActiveVoteDays(int activeVoteDays) {
-        this.activeVoteDays = activeVoteDays;
-    }
-
-    public int getInterestPoints() {
-        return interestPoints;
-    }
-
-    public void setInterestPoints(int interestPoints) {
-        this.interestPoints = interestPoints;
     }
 
     public Date getLastInterest() {

@@ -20,30 +20,31 @@ public class VoteDao {
         this.plugin = plugin;
     }
 
-    public CompletableFuture<VoteData> loadVoteData(UUID uuid) {
+    public CompletableFuture<VoteData> loadVoteData(UUID uuid, boolean register) {
         return CompletableFuture.supplyAsync(() -> {
             try(Connection connection = plugin.getDatabase().getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement("SELECT * FROM votesystem_votes WHERE uuid = ?")) {
                 statement.setString(1, uuid.toString());
 
                 try(ResultSet resultSet = statement.executeQuery()) {
-                    return new VoteData(
-                            resultSet.getInt("streak"),
-                            resultSet.getInt("points"),
-                            resultSet.getInt("bank"),
-                            new Date(resultSet.getLong("last_vote_1")),
-                            new Date(resultSet.getLong("last_vote_2")),
-                            resultSet.getInt("active_vote_days"),
-                            resultSet.getInt("interest_points"),
-                            new Date(resultSet.getLong("last_vote")),
-                            new Date(resultSet.getLong("last_pause"))
-                    );
+                    if(resultSet.next()) {
+                        return new VoteData(
+                                resultSet.getInt("streak"),
+                                resultSet.getDouble("points"),
+                                resultSet.getDouble("bank"),
+                                new Date(resultSet.getLong("last_vote_1")),
+                                new Date(resultSet.getLong("last_vote_2")),
+                                new Date(resultSet.getLong("last_vote")),
+                                new Date(resultSet.getLong("last_pause"))
+                        );
+                    }
                 }
             } catch (SQLException e) {
                 plugin.getLogger().log(Level.WARNING, "Could not load vote data!", e);
             }
 
-            return null;
+            if(!register) return null;
+            return new VoteData(0, 0.0, 0.0, null, null, null, null);
         }, plugin.getDatabase().getExecutor());
     }
 
@@ -51,28 +52,24 @@ public class VoteDao {
         CompletableFuture.runAsync(() -> {
             try(Connection connection = plugin.getDatabase().getDataSource().getConnection();
                 PreparedStatement statement = connection.prepareStatement("INSERT INTO votesystem_votes(" +
-                        "uuid, streak, points, bank, last_vote_1, last_vote_2, active_vote_days, interest_points, last_interest, last_pause) " +
+                        "uuid, streak, points, bank, last_vote_1, last_vote_2, last_interest, last_pause) " +
                         "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE " +
                         "streak = VALUES(streak), " +
                         "points = VALUES(points), " +
                         "bank = VALUES(bank), " +
                         "last_vote_1 = VALUES(last_vote_1), " +
                         "last_vote_2 = VALUES(last_vote_2), " +
-                        "active_vote_days = VALUES(active_vote_days), " +
-                        "interest_points = VALUES(interest_points), " +
                         "last_interest = VALUES(last_interest), " +
                         "last_pause = VALUES(last_pause)")) {
 
                 statement.setString(1, uuid.toString());
                 statement.setInt(2, voteData.getStreak());
-                statement.setInt(3, voteData.getPoints());
-                statement.setInt(4, voteData.getBank());
+                statement.setDouble(3, voteData.getPoints());
+                statement.setDouble(4, voteData.getBank());
                 statement.setLong(5, voteData.getLastVote1().getTime());
                 statement.setLong(6, voteData.getLastVote2().getTime());
-                statement.setInt(7, voteData.getActiveVoteDays());
-                statement.setInt(8, voteData.getInterestPoints());
-                statement.setLong(9, voteData.getLastInterest().getTime());
-                statement.setLong(10, voteData.getLastPause().getTime());
+                statement.setLong(7, voteData.getLastInterest().getTime());
+                statement.setLong(8, voteData.getLastPause().getTime());
 
             } catch (SQLException e) {
                 plugin.getLogger().log(Level.SEVERE, "Could not save vote data!", e);

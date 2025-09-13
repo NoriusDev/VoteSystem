@@ -6,7 +6,17 @@ authors: [ Norius ]
 description: Simple Vote System with shop
 softdepend:
   - PlaceholderApi
+  - VotifierPlus
+
+permissions:
+  votesystem.reload:
+    description: "Allows reloading the votesystem"
+  votesystem.admin:
+    description: "Allows using admin commands"
 
 commands:
   vote:
     description: "Get rewards for voting"
+  votesystemreload:
+    description: "Reloads the votesystem"
+    permission: "votesystem.reload"

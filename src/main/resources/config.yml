@@ -1,3 +1,5 @@
+prefix: "<b><aqua>First</aqua><dark_aqua>MC<dark_aqua></b> <dark_gray>»"
+
 database:
   user: "root"
   host: "localhost"
@@ -6,5 +8,34 @@ database:
   port: "3306"
 
 settings:
+  use-prefix: true
+  vote-link-1: "https://minecraft-server.eu/vote/index/22687/"
+  vote-link-2: "https://minecraft-server.net/vote/FirstMC"
+  date-format: "dd.MM.yyyy HH:mm"
+  pause-cooldown-days: 30
+  min-streak-access: 5
+  # min vote points when withdrawing from bank
+  min-withdraw-points: 1
+  # min vote streak until receiving vote points
+  min-streak-points: 2
+  vote-reward-points: 0.2
+  # command that gets executed when a player is voting
+  vote-command: "excellentcrates key give %player% vote 1"
+  # time when vote streak gets reset
+  streak-reset-hours: 24
+  streak-pause-hours: 24
+  interest:
+    points: 1.0
+    required-bank-points: 5
+    required-streak: 30
+    intervall-days: 7
 
-lang:
+shop-items:
+  - material: DIAMOND_BLOCK
+    enchantments:
+      - "UNBREAKING:1"
+    name: "<aqua>Diamandblock"
+    price: 0.1
+    amount: 1
+
+
